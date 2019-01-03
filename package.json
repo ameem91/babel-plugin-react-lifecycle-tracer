@@ -2,7 +2,7 @@
   "name": "babel-plugin-react-lifecycle-tracer",
   "version": "0.0.3",
   "description": "Babel plugin for instrumenting component lifecycle method events",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EBSCOIS/react-lifecycle-tracer-plugin.git"
