@@ -1,6 +1,6 @@
 {
-  "name": "react-lifecycle-tracer-plugin",
-  "version": "0.0.1",
+  "name": "babel-plugin-react-lifecycle-tracer",
+  "version": "0.0.2",
   "description": "Babel plugin for instrumenting component lifecycle method events",
   "main": "index.js",
   "repository": {
@@ -24,5 +24,8 @@
   "scripts": {
     "build": "babel index.js --out-dir lib",
     "build:examples": "npm run build && babel examples --out-dir built-examples"
+  },
+  "dependencies": {
+    "@babel/template": "^7.2.2"
   }
 }
