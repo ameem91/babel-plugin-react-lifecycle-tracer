@@ -1,4 +1,4 @@
-import tempalte from "@babel/template";
+import template from "@babel/template";
 
 const lifeCycleMethods = new Set([
   "constructor",
@@ -12,7 +12,7 @@ const lifeCycleMethods = new Set([
   "render"
 ]);
 
-const tracerTemplate = tempalte(
+const tracerTemplate = template(
   `
   window.postMessage({
     name: "__REACT_LIFECYCLE_TRACER_EVENT__",
