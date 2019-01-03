@@ -1,0 +1,28 @@
+{
+  "name": "react-lifecycle-tracer-plugin",
+  "version": "0.0.1",
+  "description": "Babel plugin for instrumenting component lifecycle method events",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EBSCOIS/react-lifecycle-tracer-plugin.git"
+  },
+  "author": "Ameem Shaik",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/EBSCOIS/react-lifecycle-tracer-plugin/issues"
+  },
+  "homepage": "https://github.com/EBSCOIS/react-lifecycle-tracer-plugin#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "scripts": {
+    "build": "babel index.js --out-dir lib",
+    "build:examples": "npm run build && babel examples --out-dir built-examples"
+  }
+}
