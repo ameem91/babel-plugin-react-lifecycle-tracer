@@ -29,6 +29,7 @@ node(buildNodeId) {
     sh """
     docker run --rm -v \$WORKSPACE:/opt/ebsco:rw ${ecrRegistry}/platform/images/node audit
     docker run --rm -v \$HOME/.npmrc:/opt/ebsco/.npmrc:ro -v \$WORKSPACE:/opt/ebsco:rw ${ecrRegistry}/platform/images/node ci
+    docker run --rm -v \$HOME/.npmrc:/opt/ebsco/.npmrc:ro -v \$WORKSPACE:/opt/ebsco:rw ${ecrRegistry}/platform/images/node run build 
     """
   }
 
