@@ -19,7 +19,9 @@ const tracerTemplate = template(
       name: "__REACT_LIFECYCLE_TRACER_EVENT__",
       payload: {
         component: COMPONENT,
-        method: METHOD
+        method: METHOD,
+        state: this.state,
+        props: this.props
       }
     }, "*")
   }

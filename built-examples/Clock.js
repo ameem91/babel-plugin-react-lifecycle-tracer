@@ -42,7 +42,9 @@ function (_Component) {
         name: "__REACT_LIFECYCLE_TRACER_EVENT__",
         payload: {
           component: "Clock",
-          method: "constructor"
+          method: "constructor",
+          state: _this.state,
+          props: _this.props
         }
       }, "*");
     }
@@ -64,7 +66,9 @@ function (_Component) {
           name: "__REACT_LIFECYCLE_TRACER_EVENT__",
           payload: {
             component: "Clock",
-            method: "componentDidMount"
+            method: "componentDidMount",
+            state: this.state,
+            props: this.props
           }
         }, "*");
       }
@@ -81,7 +85,9 @@ function (_Component) {
           name: "__REACT_LIFECYCLE_TRACER_EVENT__",
           payload: {
             component: "Clock",
-            method: "componentWillUnmount"
+            method: "componentWillUnmount",
+            state: this.state,
+            props: this.props
           }
         }, "*");
       }
@@ -103,7 +109,9 @@ function (_Component) {
           name: "__REACT_LIFECYCLE_TRACER_EVENT__",
           payload: {
             component: "Clock",
-            method: "render"
+            method: "render",
+            state: this.state,
+            props: this.props
           }
         }, "*");
       }
