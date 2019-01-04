@@ -14,13 +14,15 @@ const lifeCycleMethods = new Set([
 
 const tracerTemplate = template(
   `
-  window.postMessage({
-    name: "__REACT_LIFECYCLE_TRACER_EVENT__",
-    playload: {
-      component: COMPONENT,
-      method: METHOD
-    }
-  }, "*")
+  if (typeof window !== 'undefined') {
+    window.postMessage({
+      name: "__REACT_LIFECYCLE_TRACER_EVENT__",
+      playload: {
+        component: COMPONENT,
+        method: METHOD
+      }
+    }, "*")
+  }
 `,
   {
     placeholderPattern: false,
@@ -38,16 +40,20 @@ function buildTracerAST(componentName, methodName) {
 export default function({ types }) {
   return {
     visitor: {
-      ClassMethod(path) {
-        const componentName = path.parentPath.parent.id.name;
-        const methodName = path.node.key.name;
-        if (lifeCycleMethods.has(methodName)) {
-          const tracerAST = buildTracerAST(
-            types.stringLiteral(componentName),
-            types.stringLiteral(methodName)
-          );
-          path.get("body").unshiftContainer("body", tracerAST);
-        }
+      Program(programPath) {
+        programPath.traverse({
+          ClassMethod(classMethodPath) {
+            const componentName = classMethodPath.parentPath.parent.id.name;
+            const methodName = classMethodPath.node.key.name;
+            if (lifeCycleMethods.has(methodName)) {
+              const tracerAST = buildTracerAST(
+                types.stringLiteral(componentName),
+                types.stringLiteral(methodName)
+              );
+              classMethodPath.get("body").unshiftContainer("body", tracerAST);
+            }
+          }
+        });
       }
     }
   };
