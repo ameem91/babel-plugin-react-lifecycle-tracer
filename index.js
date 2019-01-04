@@ -17,7 +17,7 @@ const tracerTemplate = template(
   if (typeof window !== 'undefined') {
     window.postMessage({
       name: "__REACT_LIFECYCLE_TRACER_EVENT__",
-      playload: {
+      payload: {
         component: COMPONENT,
         method: METHOD
       }
