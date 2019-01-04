@@ -20,8 +20,8 @@ const tracerTemplate = template(
       payload: {
         component: COMPONENT,
         method: METHOD,
-        state: this.state,
-        props: this.props
+        state: this? this.state : {},
+        props: this? this.props : {} 
       }
     }, "*")
   }
