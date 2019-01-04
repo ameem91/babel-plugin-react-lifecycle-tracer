@@ -29,8 +29,8 @@ const tracerTemplate = template(
       payload: {
         component: COMPONENT,
         method: METHOD,
-        state: this.state,
-        props: this.props
+        state: JSON.parse(JSON.stringify(this.state)),
+        props: JSON.parse(JSON.stringify(this.props))
       }
     }, "*")
   }
