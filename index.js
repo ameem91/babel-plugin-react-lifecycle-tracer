@@ -1,18 +1,7 @@
 import template from "@babel/template";
 
-const lifeCycleMethods = new Set([
-  "constructor",
-  "componentDidMount",
-  "componentDidUpdate",
-  "componentWillUnmount",
-  "shouldComponentUpdate",
-  "getDerivedStateFromProps",
-  "getSnapshotBeforeUpdate",
-  "componentDidCatch",
-  "render"
-]);
 
-const tracerTemplate = template(
+const constructorTemplate = template(
   `
   if (typeof window !== 'undefined') {
     window.postMessage({
@@ -20,8 +9,8 @@ const tracerTemplate = template(
       payload: {
         component: COMPONENT,
         method: METHOD,
-        state: this? this.state : {},
-        props: this? this.props : {} 
+        state: {},
+        props: {} 
       }
     }, "*")
   }
@@ -32,8 +21,41 @@ const tracerTemplate = template(
   }
 );
 
+const tracerTemplate = template(
+  `
+  if (typeof window !== 'undefined') {
+    window.postMessage({
+      name: "__REACT_LIFECYCLE_TRACER_EVENT__",
+      payload: {
+        component: COMPONENT,
+        method: METHOD,
+        state: this.state,
+        props: this.props
+      }
+    }, "*")
+  }
+`,
+  {
+    placeholderPattern: false,
+    placeholderWhitelist: new Set(["COMPONENT", "METHOD"])
+  }
+);
+
+
+const lifeCycleMethods = {
+  constructor: constructorTemplate,
+  componentDidMount: tracerTemplate,
+  componentDidUpdate: tracerTemplate,
+  componentWillUnmount: tracerTemplate,
+  shouldComponentUpdate: tracerTemplate,
+  getDerivedStateFromProps: tracerTemplate,
+  getSnapshotBeforeUpdate: tracerTemplate,
+  componentDidCatch: tracerTemplate,
+  render: tracerTemplate
+};
+
 function buildTracerAST(componentName, methodName) {
-  return tracerTemplate({
+  return lifeCycleMethods[methodName.value]({
     METHOD: methodName,
     COMPONENT: componentName
   });
@@ -47,7 +69,7 @@ export default function({ types }) {
           ClassMethod(classMethodPath) {
             const componentName = classMethodPath.parentPath.parent.id.name;
             const methodName = classMethodPath.node.key.name;
-            if (lifeCycleMethods.has(methodName)) {
+            if (methodName in lifeCycleMethods) {
               const tracerAST = buildTracerAST(
                 types.stringLiteral(componentName),
                 types.stringLiteral(methodName)
