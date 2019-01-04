@@ -40,7 +40,7 @@ function (_Component) {
     if (typeof window !== 'undefined') {
       window.postMessage({
         name: "__REACT_LIFECYCLE_TRACER_EVENT__",
-        playload: {
+        payload: {
           component: "Clock",
           method: "constructor"
         }
@@ -62,7 +62,7 @@ function (_Component) {
       if (typeof window !== 'undefined') {
         window.postMessage({
           name: "__REACT_LIFECYCLE_TRACER_EVENT__",
-          playload: {
+          payload: {
             component: "Clock",
             method: "componentDidMount"
           }
@@ -79,7 +79,7 @@ function (_Component) {
       if (typeof window !== 'undefined') {
         window.postMessage({
           name: "__REACT_LIFECYCLE_TRACER_EVENT__",
-          playload: {
+          payload: {
             component: "Clock",
             method: "componentWillUnmount"
           }
@@ -101,7 +101,7 @@ function (_Component) {
       if (typeof window !== 'undefined') {
         window.postMessage({
           name: "__REACT_LIFECYCLE_TRACER_EVENT__",
-          playload: {
+          payload: {
             component: "Clock",
             method: "render"
           }
