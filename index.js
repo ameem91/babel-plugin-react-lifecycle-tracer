@@ -10,7 +10,6 @@ const constructorTemplate = template(
         component: COMPONENT,
         method: METHOD,
         state: {},
-        props: {} 
       }
     }, "*")
   }
@@ -30,7 +29,6 @@ const tracerTemplate = template(
         component: COMPONENT,
         method: METHOD,
         state: JSON.parse(JSON.stringify(this.state)),
-        props: JSON.parse(JSON.stringify(this.props))
       }
     }, "*")
   }
