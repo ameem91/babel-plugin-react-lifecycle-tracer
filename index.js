@@ -1,7 +1,7 @@
 import template from "@babel/template";
 
 
-const constructorTemplate = template(
+const basicTemplate = template(
   `
   if (typeof window !== 'undefined') {
     window.postMessage({
@@ -9,7 +9,6 @@ const constructorTemplate = template(
       payload: {
         component: COMPONENT,
         method: METHOD,
-        state: {},
       }
     }, "*")
   }
@@ -20,7 +19,7 @@ const constructorTemplate = template(
   }
 );
 
-const tracerTemplate = template(
+const detailedTemplate = template(
   `
   if (typeof window !== 'undefined') {
     window.postMessage({
@@ -41,15 +40,15 @@ const tracerTemplate = template(
 
 
 const lifeCycleMethods = {
-  constructor: constructorTemplate,
-  componentDidMount: tracerTemplate,
-  componentDidUpdate: tracerTemplate,
-  componentWillUnmount: tracerTemplate,
-  shouldComponentUpdate: tracerTemplate,
-  getDerivedStateFromProps: tracerTemplate,
-  getSnapshotBeforeUpdate: tracerTemplate,
-  componentDidCatch: tracerTemplate,
-  render: tracerTemplate
+  constructor: basicTemplate,
+  componentDidMount: detailedTemplate,
+  componentDidUpdate: detailedTemplate,
+  componentWillUnmount: detailedTemplate,
+  shouldComponentUpdate: detailedTemplate,
+  getDerivedStateFromProps: basicTemplate,
+  getSnapshotBeforeUpdate: detailedTemplate,
+  componentDidCatch: detailedTemplate,
+  render: detailedTemplate
 };
 
 function buildTracerAST(componentName, methodName) {

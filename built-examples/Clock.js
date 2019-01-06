@@ -42,9 +42,7 @@ function (_Component) {
         name: "__REACT_LIFECYCLE_TRACER_EVENT__",
         payload: {
           component: "Clock",
-          method: "constructor",
-          state: {},
-          props: {}
+          method: "constructor"
         }
       }, "*");
     }
@@ -67,8 +65,7 @@ function (_Component) {
           payload: {
             component: "Clock",
             method: "componentDidMount",
-            state: this.state,
-            props: this.props
+            state: JSON.parse(JSON.stringify(this.state))
           }
         }, "*");
       }
@@ -86,8 +83,7 @@ function (_Component) {
           payload: {
             component: "Clock",
             method: "componentWillUnmount",
-            state: this.state,
-            props: this.props
+            state: JSON.parse(JSON.stringify(this.state))
           }
         }, "*");
       }
@@ -110,8 +106,7 @@ function (_Component) {
           payload: {
             component: "Clock",
             method: "render",
-            state: this.state,
-            props: this.props
+            state: JSON.parse(JSON.stringify(this.state))
           }
         }, "*");
       }
