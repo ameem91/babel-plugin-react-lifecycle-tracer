@@ -1,6 +1,6 @@
 # babel-plugin-react-lifecycle-tracer
 
-A [babel](https://new.babeljs.io/) plugin that is used to capture [React](https://reactjs.org/) lifecycle method events. It should be used in conjunction with the [react-lifecycle-tracer](https://github.com/EBSCOIS/react-lifecycle-tracer) Chrome Extension.
+A [babel](https://new.babeljs.io/) plugin that is used to capture [React](https://reactjs.org/) lifecycle method events. It should be used in conjunction with the [react-lifecycle-tracer](https://github.com/ameem91/react-lifecycle-tracer) Chrome Extension.
 
 
 ## Installation
